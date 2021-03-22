@@ -51,14 +51,27 @@ namespace Calculator_with_Exception_Handling
             }
         }
 
-        private static int GetQuotient(int num)
+        private static int GetQuotient(int prod)
         {
             throw new NotImplementedException();
         }
 
-        private static int GetProduct(int[] arr, int num)
+        private static int GetProduct(int[] arr, int sum)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Please select a random number between 1 and {arr.Length}");
+            int index = Convert.ToInt32(Console.ReadLine())-1;
+
+            int product = 0;
+            try
+            {
+                product = sum * arr[index];
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                throw e;
+            }
+
+            return product;
         }
 
         private static int GetSum(int[] arr)
