@@ -33,13 +33,13 @@ namespace Calculator_with_Exception_Handling
                 userArray = Populate(userArray);
                 int arraySum = GetSum(userArray);
                 int arrayProd = GetProduct(userArray, arraySum);
-                int arrayQuotient = GetQuotient(arrayProd);
+                decimal arrayQuotient = GetQuotient(arrayProd);
 
                 Console.WriteLine($"Your Array size is size: {userArray.Length}");
                 Console.WriteLine($"The numbers in the array are" + string.Join(",", userArray));
                 Console.WriteLine($"The sum of your array is {arraySum}");
                 Console.WriteLine($"{arraySum} * {arrayProd/arraySum} = {arrayProd}");
-                Console.WriteLine($"{arrayProd} / {arrayProd/arrayQuotient} = {arrayQuotient}");
+                Console.WriteLine($"{arrayProd} / {decimal.Divide(Convert.ToDecimal(arrayProd),arrayQuotient)} = {arrayQuotient}");
             }
             catch (OverflowException e)
             {
@@ -51,9 +51,19 @@ namespace Calculator_with_Exception_Handling
             }
         }
 
-        private static int GetQuotient(int prod)
+        private static decimal GetQuotient(int prod)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Please enter a number to divide your product {prod} by");
+            decimal quotient = 0;
+            try
+            {
+                quotient = decimal.Divide( Convert.ToDecimal(prod), Convert.ToDecimal(Console.ReadLine()));
+            }
+            catch (DivideByZeroException e)
+            {
+                return 0m;
+            }
+            return quotient;
         }
 
         private static int GetProduct(int[] arr, int sum)
