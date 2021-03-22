@@ -6,7 +6,23 @@ namespace Calculator_with_Exception_Handling
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            try
+            {
+                StartSequence();
+            } 
+            catch(Exception e)
+            {
+                Console.WriteLine("Something didn't quite go right: " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("The program has finished executing.");
+            }
+        }
+
+        private static void StartSequence()
+        {
+            throw new NotImplementedException();
         }
     }
 }
