@@ -63,7 +63,16 @@ namespace Calculator_with_Exception_Handling
 
         private static int GetSum(int[] arr)
         {
-            throw new NotImplementedException();
+            int sum = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                sum += arr[i];
+            }
+            if (sum < 20)
+            {
+                throw new Exception($"Value of {sum} is too low");
+            }
+            return sum;
         }
 
         private static int[] Populate(int[] arr)
