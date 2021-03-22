@@ -24,23 +24,17 @@ namespace Calculator_with_Exception_Handling
         {
             Console.WriteLine("Enter a number greater than zero:");
             int userNum = 0;
-            prompt:
             try
             {
                 userNum = Convert.ToInt32(Console.ReadLine());
-            }
-            catch (FormatException e)
-            {
-                Console.WriteLine(e.Message);
-                goto prompt;
-            }
-            int[] userArray = new int[userNum];
-            userArray = Populate(userArray);
-            try
-            {
+
+                int[] userArray = new int[userNum];
+
+                userArray = Populate(userArray);
                 int arraySum = GetSum(userArray);
                 int arrayProd = GetProduct(userArray, arraySum);
                 int arrayQuotient = GetQuotient(arrayProd);
+
                 Console.WriteLine($"Your Array size is size: {userArray.Length}");
                 Console.WriteLine($"The numbers in the array are" + string.Join(",", userArray));
                 Console.WriteLine($"The sum of your array is {arraySum}");
@@ -51,7 +45,10 @@ namespace Calculator_with_Exception_Handling
             {
                 Console.WriteLine(e.Message);
             }
-
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         private static int GetQuotient(int num)
@@ -71,7 +68,12 @@ namespace Calculator_with_Exception_Handling
 
         private static int[] Populate(int[] arr)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.WriteLine($"Please enter number: {i + 1} of {arr.Length}");
+                arr[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            return arr;
         }
     }
 }
